@@ -27,6 +27,8 @@ jobs:
           OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }}
           CUSTOM_CONFIG: ${{ vars.CUSTOM_CONFIG }}
         run: |
+          python -c "import os; print(f'ID len: {len(os.environ.get(\"ZOTERO_ID\",\"\"))}')"
+        
           export DEBUG=true
           printf "%b\n" "$CUSTOM_CONFIG" > config/custom.yaml
           echo "Use custom config: "
