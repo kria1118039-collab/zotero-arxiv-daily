@@ -23,9 +23,9 @@ jobs:
           OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }}
           CUSTOM_CONFIG: ${{ vars.CUSTOM_CONFIG }}
         run: |
-          python -c "import os; print(f'ID len: {len(os.environ.get(\"ZOTERO_ID\",\"\"))}')"
-          export DEBUG=true
-          printf "%b\n" "$CUSTOM_CONFIG" > config/custom.yaml
-          echo "Use custom config: "
+                - name: Run script
+        env:
+          ZOTERO_ID: ${{ secrets.ZOTERO_ID }}
+        run: echo "Value: [$ZOTERO_ID]"
           cat config/custom.yaml
           uv run src/zotero_arxiv_daily/main.py
